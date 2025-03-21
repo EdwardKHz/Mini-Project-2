@@ -60,8 +60,8 @@ public class ProductController {
 
             if (!type.isEmpty() && quantity > 0 && cost > 0) {
                 Products newProduct = new Products(type, quantity, cost, value);
-                productList.add(newProduct);  // Adds the new product to the ObservableList
-                clearFields();  // Clears the text fields after adding the product
+                productList.add(newProduct);
+                clearFields();
             } else {
                 showAlert("Invalid Input", "Please ensure all fields are correctly filled.");
             }
@@ -102,7 +102,6 @@ public class ProductController {
             double value = quantity * cost;
             valueField.setText(String.valueOf(value));
         } catch (NumberFormatException e) {
-            // If the input is invalid (not a number), clear the valueField
             valueField.clear();
         }
     }
