@@ -1,9 +1,6 @@
 package com.workshop1.miniproject2.controllers;
 
 import com.workshop1.miniproject2.models.Products;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -45,7 +42,7 @@ public class ProductController {
         deleteButton.setOnAction(event -> handleDeleteProduct());
         modifyButton.setOnAction(event -> handleModifyProduct());
 
-        
+
         quantityField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
         costField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
     }
