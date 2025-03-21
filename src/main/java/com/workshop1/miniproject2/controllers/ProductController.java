@@ -45,7 +45,7 @@ public class ProductController {
         deleteButton.setOnAction(event -> handleDeleteProduct());
         modifyButton.setOnAction(event -> handleModifyProduct());
 
-        // Listen for changes in quantity or cost field and update valueField accordingly
+        
         quantityField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
         costField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
     }
@@ -87,7 +87,7 @@ public class ProductController {
             typeField.setText(selectedProduct.getType());
             quantityField.setText(String.valueOf(selectedProduct.getQuantity()));
             costField.setText(String.valueOf(selectedProduct.getCost()));
-            valueField.setText(String.valueOf(selectedProduct.getValue()));  // Display the value in the valueField
+            valueField.setText(String.valueOf(selectedProduct.getValue()));
 
             productList.remove(selectedProduct);
         } else {
