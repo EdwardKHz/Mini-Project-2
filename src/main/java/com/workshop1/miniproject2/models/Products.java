@@ -1,14 +1,13 @@
 package com.workshop1.miniproject2.models;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+
+import javafx.beans.property.*;
 
 public class Products {
-    private SimpleStringProperty type;
-    private SimpleIntegerProperty quantity;
-    private SimpleDoubleProperty cost;
-    private SimpleDoubleProperty value;
+    private final StringProperty type;
+    private final IntegerProperty quantity;
+    private final DoubleProperty cost;
+    private final DoubleProperty value;
 
     public Products(String type, int quantity, double cost, double value) {
         this.type = new SimpleStringProperty(type);
@@ -25,7 +24,7 @@ public class Products {
         this.type.set(type);
     }
 
-    public SimpleStringProperty typeProperty() {
+    public StringProperty typeProperty() {
         return type;
     }
 
@@ -37,7 +36,7 @@ public class Products {
         this.quantity.set(quantity);
     }
 
-    public SimpleIntegerProperty quantityProperty() {
+    public IntegerProperty quantityProperty() {
         return quantity;
     }
 
@@ -49,7 +48,7 @@ public class Products {
         this.cost.set(cost);
     }
 
-    public SimpleDoubleProperty costProperty() {
+    public DoubleProperty costProperty() {
         return cost;
     }
 
@@ -61,7 +60,7 @@ public class Products {
         this.value.set(value);
     }
 
-    public SimpleDoubleProperty valueProperty() {
+    public DoubleProperty valueProperty() {
         return value;
     }
 }

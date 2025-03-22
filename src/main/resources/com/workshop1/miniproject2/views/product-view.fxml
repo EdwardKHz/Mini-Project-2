@@ -29,17 +29,19 @@
     <Label textFill="WHITE" GridPane.rowIndex="7" />
     <TextField fx:id="valueField" editable="false" prefHeight="25.0" promptText="Value (Quantity x Cost)" style="-fx-border-style: solid; -fx-background-radius: 1;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
 
-    <Button id="addButton" fx:id="addButton" defaultButton="true" onAction="#handleAddProduct" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Add Product" textFill="WHITE" GridPane.rowIndex="7" />
+    <Button id="addButton" fx:id="addButton" defaultButton="true" onAction="#handleAddProduct" prefHeight="28.0" prefWidth="101.0" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Add Product" textFill="WHITE" GridPane.rowIndex="5" />
 
-    <TableView fx:id="productTable" prefHeight="203.0" prefWidth="426.0" style="-fx-border-style: solid; -fx-border-radius: 1;" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="8" GridPane.rowSpan="2147483647">
-        <TableColumn fx:id="typeColumn" prefWidth="100" text="Type" />
-        <TableColumn fx:id="quantityColumn" prefWidth="100" text="Quantity" />
-        <TableColumn fx:id="costColumn" prefWidth="100" text="Cost" />
-        <TableColumn fx:id="valueColumn" prefWidth="100" text="Value" />
+    <Button id="deleteButton" fx:id="deleteButton" mnemonicParsing="false" prefHeight="28.0" prefWidth="101.0" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Delete Product" textFill="WHITE" GridPane.rowIndex="7" />
+    <Button fx:id="modifyButton" mnemonicParsing="false" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Modify Product" textFill="WHITE" GridPane.rowIndex="6" />
+    <TableView fx:id="productTable" prefHeight="77.0" prefWidth="413.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+        <columns>
+            <TableColumn fx:id="typeColumn" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
+            <TableColumn fx:id="costColumn" prefWidth="75.0" text="Cost" />
+            <TableColumn fx:id="valueColumn" prefWidth="75.0" text="Values" />
+        </columns>
     </TableView>
-
-    <Button id="deleteButton" fx:id="deleteButton" mnemonicParsing="false" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Delete Product" textFill="WHITE" GridPane.rowIndex="9" />
-    <Button fx:id="modifyButton" mnemonicParsing="false" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Modify Product" textFill="WHITE" GridPane.rowIndex="8" />
+   <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="66.0" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Back" textFill="#fdfdfd" GridPane.rowIndex="2" />
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -54,7 +56,8 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
-      <RowConstraints maxHeight="69.33334350585938" minHeight="8.0" prefHeight="48.666656494140625" />
-      <RowConstraints maxHeight="98.0" minHeight="36.666656494140625" prefHeight="57.333343505859375" />
+      <RowConstraints maxHeight="69.33334350585938" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="69.33334350585938" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="106.66666666666669" minHeight="36.666656494140625" prefHeight="106.66666666666669" />
    </rowConstraints>
 </GridPane>

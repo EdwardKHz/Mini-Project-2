@@ -38,14 +38,21 @@ public class ProductController {
 
         productTable.setItems(productList);
 
+        addDummyData();
+
         addButton.setOnAction(event -> handleAddProduct());
         deleteButton.setOnAction(event -> handleDeleteProduct());
         modifyButton.setOnAction(event -> handleModifyProduct());
 
-
         quantityField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
         costField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
     }
+
+    private void addDummyData() {
+        productList.add(new Products("Cheese Pizza", 3, 25.5, 3 * 25.5));
+        productList.add(new Products("Pepperoni Pizza", 5, 15.0, 2 * 15.0));
+    }
+
 
     @FXML
     public void handleAddProduct() {
@@ -63,7 +70,7 @@ public class ProductController {
                 showAlert("Invalid Input", "Please ensure all fields are correctly filled.");
             }
         } catch (NumberFormatException e) {
-            showAlert("Invalid Input", "Please enter valid numbers for quantity and cost.");
+            showAlert("Invalid Input", "Please enter valid numbers.");
         }
     }
 
