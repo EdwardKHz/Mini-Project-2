@@ -16,13 +16,13 @@ public class ProductsList extends Application {
     public void start(Stage primaryStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/product-view.fxml"));
-            if (loader.getLocation() == null) {
-                throw new Exception("FXML file not found!");
-            }
             Parent root = loader.load();
+
             Scene scene = new Scene(root, 600, 400);
+
             primaryStage.setScene(scene);
             primaryStage.setTitle("Product List");
+            primaryStage.setResizable(true);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

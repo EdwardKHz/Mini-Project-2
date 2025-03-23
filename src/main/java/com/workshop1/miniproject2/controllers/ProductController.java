@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class ProductController {
 
@@ -36,9 +37,10 @@ public class ProductController {
         costColumn.setCellValueFactory(cellData -> cellData.getValue().costProperty().asObject());
         valueColumn.setCellValueFactory(cellData -> cellData.getValue().valueProperty().asObject());
 
-        productTable.setItems(productList);
+        productList.add(new Products("Pepperoni Pizza", 2, 10, 20));
+        productList.add(new Products("Cheese Pizza",2 , 20, 40));
 
-        addDummyData();
+        productTable.setItems(productList);
 
         addButton.setOnAction(event -> handleAddProduct());
         deleteButton.setOnAction(event -> handleDeleteProduct());
@@ -48,11 +50,16 @@ public class ProductController {
         costField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
     }
 
-    private void addDummyData() {
-        productList.add(new Products("Cheese Pizza", 3, 25.5, 3 * 25.5));
-        productList.add(new Products("Pepperoni Pizza", 5, 15.0, 2 * 15.0));
+    private void updateValue() {
+        try {
+            int quantity = Integer.parseInt(quantityField.getText());
+            double cost = Double.parseDouble(costField.getText());
+            double value = quantity * cost;
+            valueField.setText(String.valueOf(value));
+        } catch (NumberFormatException e) {
+            valueField.clear();
+        }
     }
-
 
     @FXML
     public void handleAddProduct() {
@@ -99,17 +106,6 @@ public class ProductController {
         }
     }
 
-    private void updateValue() {
-        try {
-            int quantity = Integer.parseInt(quantityField.getText());
-            double cost = Double.parseDouble(costField.getText());
-            double value = quantity * cost;
-            valueField.setText(String.valueOf(value));
-        } catch (NumberFormatException e) {
-            valueField.clear();
-        }
-    }
-
     private void clearFields() {
         typeField.clear();
         quantityField.clear();
@@ -118,7 +114,7 @@ public class ProductController {
     }
 
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

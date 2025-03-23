@@ -1,6 +1,5 @@
 package com.workshop1.miniproject2.models;
 
-
 import javafx.beans.property.*;
 
 public class Products {

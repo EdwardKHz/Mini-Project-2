@@ -6,58 +6,86 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="594.0" style="-fx-background-color: FF4141;" vgap="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workshop1.miniproject2.controllers.ProductController">
-    <padding>
-        <Insets bottom="25" left="25" right="25" top="25" />
-    </padding>
-
-    <Text fill="#f4f2f2" smooth="false" stroke="WHITE" text="Product Details:" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="204.4433798789978" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
-        <font>
-            <Font size="24.0" />
-        </font>
-    </Text>
-    <TextField fx:id="typeField" prefHeight="28.0" prefWidth="99.0" promptText="Enter product type" style="-fx-border-style: solid; -fx-background-radius: 1;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-    <TextField fx:id="quantityField" prefHeight="25.0" prefWidth="136.0" promptText="Enter quantity" style="-fx-border-style: solid; -fx-background-radius: 1;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-    <TextField fx:id="costField" prefHeight="25.0" promptText="Enter cost" style="-fx-border-style: solid; -fx-background-radius: 1;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-
-    <Label textFill="WHITE" GridPane.rowIndex="7" />
-    <TextField fx:id="valueField" editable="false" prefHeight="25.0" promptText="Value (Quantity x Cost)" style="-fx-border-style: solid; -fx-background-radius: 1;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-
-    <Button id="addButton" fx:id="addButton" defaultButton="true" onAction="#handleAddProduct" prefHeight="28.0" prefWidth="101.0" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Add Product" textFill="WHITE" GridPane.rowIndex="5" />
-
-    <Button id="deleteButton" fx:id="deleteButton" mnemonicParsing="false" prefHeight="28.0" prefWidth="101.0" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Delete Product" textFill="WHITE" GridPane.rowIndex="7" />
-    <Button fx:id="modifyButton" mnemonicParsing="false" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Modify Product" textFill="WHITE" GridPane.rowIndex="6" />
-    <TableView fx:id="productTable" prefHeight="77.0" prefWidth="413.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
-        <columns>
-            <TableColumn fx:id="typeColumn" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
-            <TableColumn fx:id="costColumn" prefWidth="75.0" text="Cost" />
-            <TableColumn fx:id="valueColumn" prefWidth="75.0" text="Values" />
-        </columns>
-    </TableView>
-   <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="66.0" style="-fx-border-style: solid; -fx-border-radius: 1; -fx-background-color: FF4141;" text="Back" textFill="#fdfdfd" GridPane.rowIndex="2" />
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints maxHeight="69.33334350585938" minHeight="0.0" prefHeight="0.0" />
-      <RowConstraints maxHeight="69.33334350585938" minHeight="0.0" prefHeight="0.0" />
-      <RowConstraints maxHeight="106.66666666666669" minHeight="36.666656494140625" prefHeight="106.66666666666669" />
-   </rowConstraints>
-</GridPane>
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workshop1.miniproject2.controllers.ProductController">
+    <children>
+        <HBox layoutY="-1.0" prefHeight="531.0" prefWidth="603.0">
+            <children>
+                <VBox prefHeight="531.0" prefWidth="291.0" style="-fx-background-color: #ff4141;">
+                    <children>
+                        <Button id="backBtn" fx:id="backBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="52.0" style="-fx-background-color: #ff4141; -fx-border-color: white; -fx-border-style: solid; -fx-border-radius: 2px; -fx-border-width: 2px;" text="Back" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="12.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="235.0" text="Product Details:" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="19.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                  <ImageView fitHeight="100.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/CartIcons.png" />
+                     </image>
+                  </ImageView>
+                        <TextField id="typeField" fx:id="typeField" prefHeight="34.0" prefWidth="235.0" promptText="Enter type of product">
+                            <VBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="MS Outlook" size="12.0" />
+                            </font>
+                        </TextField>
+                        <TextField id="quantityField" fx:id="quantityField" prefHeight="34.0" prefWidth="235.0" promptText="Enter quantity of product">
+                            <VBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <TextField id="costField" fx:id="costField" prefHeight="34.0" prefWidth="235.0" promptText="Enter cost of product">
+                            <VBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <TextField id="valueField" fx:id="valueField" editable="false" prefHeight="34.0" prefWidth="235.0" promptText="Value (Quantity * Cost)" />
+                        <HBox prefHeight="68.0" prefWidth="235.0" spacing="10" style="-fx-background-color: white; -fx-alignment: center; -fx-border-color: #aaa; -fx-border-width: 5px;">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="30.0" />
+                            </VBox.margin>
+                            <children>
+                                <Button id="addButton" fx:id="addButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="51.0" style="-fx-background-color: #ff4141;" text="Insert" textFill="WHITE" />
+                                <Button id="modifyButton" fx:id="modifyButton" mnemonicParsing="false" style="-fx-background-color: #ff4141;" text="Modify" textFill="WHITE" />
+                                <Button id="deleteButton" fx:id="deleteButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ff4141;" text="Delete" textFill="WHITE" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <TableView id="productTable" fx:id="productTable" prefHeight="491.0" prefWidth="385.0">
+                    <columns>
+                        <TableColumn id="typeColumn" fx:id="typeColumn" prefWidth="92.00000250339508" text="Type" />
+                        <TableColumn id="quantityColumn" fx:id="quantityColumn" prefWidth="71.99993133544922" text="Quantity" />
+                        <TableColumn id="costColumn" fx:id="costColumn" prefWidth="100.00004577636719" text="Cost" />
+                        <TableColumn id="valueColumn" fx:id="valueColumn" prefWidth="75.0" text="Value" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                    <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </HBox.margin>
+                </TableView>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
