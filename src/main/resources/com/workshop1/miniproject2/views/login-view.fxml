@@ -12,7 +12,7 @@
 <Stage xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workshop1.miniproject2.controllers.LogInController">
     <scene>
         <Scene>
-            <AnchorPane prefHeight="472.0" prefWidth="581.0" style="-fx-background-color: #ff4141;" >
+            <AnchorPane prefHeight="472.0" prefWidth="581.0" style="-fx-background-color: #ff4141;">
             <children>
                <VBox layoutX="105.0" layoutY="51.0" prefHeight="385.0" prefWidth="371.0" style="-fx-background-color: #eee;">
                   <children>
@@ -24,6 +24,11 @@
                            <Label alignment="CENTER" prefHeight="38.0" prefWidth="220.0" style="-fx-background-color: #ff4141;" text="ADMIN BUSINESS LOGIN " textFill="WHITE">
                               <font>
                                  <Font name="Tahoma Bold" size="16.0" />
+                              </font>
+                           </Label>
+                           <Label id="errorMsg" fx:id="errorMsg" alignment="CENTER" prefHeight="18.0" prefWidth="372.0" text="Incorrect username and/or password" textAlignment="CENTER" textFill="#e70000">
+                              <font>
+                                 <Font size="13.0" />
                               </font>
                            </Label>
                            <TextField id="user" fx:id="user" prefHeight="34.0" prefWidth="262.0" promptText="USERNAME" style="-fx-border-style: solid; -fx-border-radius: 0px; -fx-border-color: #eee;">
@@ -66,11 +71,6 @@
                            </DropShadow>
                         </effect>
                      </VBox>
-                     <Label id="errorMsg" fx:id="errorMsg" alignment="CENTER" prefHeight="18.0" prefWidth="372.0" text="Incorrect username and/or password" textAlignment="CENTER" textFill="#e70000">
-                        <font>
-                           <Font size="13.0" />
-                        </font>
-                     </Label>
                   </children>
                </VBox>
             </children></AnchorPane>
