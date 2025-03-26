@@ -7,14 +7,12 @@ import javafx.beans.property.SimpleStringProperty;
 public class Employee {
     private final SimpleStringProperty firstName, lastName;
     private final SimpleIntegerProperty age;
-    private final SimpleStringProperty address;
     private final SimpleDoubleProperty salary;
 
-    public Employee(String firstName, String lastName, int age, String address, double salary) {
+    public Employee(String firstName, String lastName, int age, double salary) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.age = new SimpleIntegerProperty(age);
-        this.address = new SimpleStringProperty(address);
         this.salary = new SimpleDoubleProperty(salary);
     }
 
@@ -35,12 +33,6 @@ public class Employee {
     }
     public void setAge(int age) {
         this.age.set(age);
-    }
-    public String getAddress() {
-        return address.get();
-    }
-    public void setAddress(String address) {
-        this.address.set(address);
     }
     public double getSalary() {
         return salary.get();

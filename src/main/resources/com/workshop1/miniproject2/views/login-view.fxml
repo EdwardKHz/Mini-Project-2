@@ -1,79 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.stage.*?>
 
-<Stage xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workshop1.miniproject2.controllers.LogInController">
-    <scene>
-        <Scene>
-            <AnchorPane prefHeight="472.0" prefWidth="581.0" style="-fx-background-color: #ff4141;">
-            <children>
-               <VBox layoutX="105.0" layoutY="51.0" prefHeight="385.0" prefWidth="371.0" style="-fx-background-color: #eee;">
-                  <children>
-                     <VBox alignment="CENTER" prefHeight="290.0" prefWidth="311.0" style="-fx-border-style: solid; -fx-border-radius: 10px; -fx-border-width: 5px; -fx-border-color: #aaa;">
-                        <VBox.margin>
-                           <Insets left="30.0" right="30.0" top="45.0" />
-                        </VBox.margin>
-                        <children>
-                           <Label alignment="CENTER" prefHeight="38.0" prefWidth="220.0" style="-fx-background-color: #ff4141;" text="ADMIN BUSINESS LOGIN " textFill="WHITE">
-                              <font>
-                                 <Font name="Tahoma Bold" size="16.0" />
-                              </font>
-                           </Label>
-                           <Label id="errorMsg" fx:id="errorMsg" alignment="CENTER" prefHeight="18.0" prefWidth="372.0" text="Incorrect username and/or password" textAlignment="CENTER" textFill="#e70000">
-                              <font>
-                                 <Font size="13.0" />
-                              </font>
-                           </Label>
-                           <TextField id="user" fx:id="user" prefHeight="34.0" prefWidth="262.0" promptText="USERNAME" style="-fx-border-style: solid; -fx-border-radius: 0px; -fx-border-color: #eee;">
-                              <font>
-                                 <Font name="Malgun Gothic Semilight" size="13.0" />
-                              </font>
-                              <opaqueInsets>
-                                 <Insets />
-                              </opaqueInsets>
-                              <VBox.margin>
-                                 <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
-                              </VBox.margin>
-                           </TextField>
-                           <PasswordField id="pass" fx:id="pass" prefHeight="35.0" prefWidth="241.0" promptText="PASSWORD" style="-fx-border-color: #eee; -fx-border-style: solid; -fx-border-radius: 0px;">
-                              <font>
-                                 <Font name="Malgun Gothic Semilight" size="13.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets bottom="20.0" left="30.0" right="30.0" />
-                              </VBox.margin>
-                           </PasswordField>
-                           <Button id="loginBtn" fx:id="loginBtn" mnemonicParsing="false" onAction="#logInAction" style="-fx-background-color: #ff4141;" text="Log In" textFill="WHITE">
-                              <font>
-                                 <Font name="Malgun Gothic Semilight" size="13.0" />
-                              </font>
-                              <effect>
-                                 <DropShadow blurType="ONE_PASS_BOX" height="9.3" radius="6.49" width="18.66">
-                                    <color>
-                                       <Color opacity="0.5699999928474426" />
-                                    </color>
-                                 </DropShadow>
-                              </effect>
-                           </Button>
-                        </children>
-                        <effect>
-                           <DropShadow height="11.64" radius="5.32" width="11.64">
-                              <color>
-                                 <Color opacity="0.4220890402793884" />
-                              </color>
-                           </DropShadow>
-                        </effect>
-                     </VBox>
-                  </children>
-               </VBox>
-            </children></AnchorPane>
-        </Scene>
-    </scene>
-</Stage>
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.workshop1.miniproject2.controllers.LogInController"
+            prefHeight="472.0" prefWidth="581.0" style="-fx-background-color: #ff4141;">
+   <children>
+      <VBox layoutX="105.0" layoutY="51.0" prefHeight="385.0" prefWidth="371.0" style="-fx-background-color: #eee;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="290.0" prefWidth="311.0"
+                  style="-fx-border-style: solid; -fx-border-radius: 10px; -fx-border-width: 5px; -fx-border-color: #aaa;">
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" top="45.0" />
+               </VBox.margin>
+               <children>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="220.0" style="-fx-background-color: #ff4141;"
+                         text="ADMIN BUSINESS LOGIN " textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label id="errorMsg" fx:id="errorMsg" alignment="CENTER" prefHeight="18.0" prefWidth="372.0"
+                         text="" textAlignment="CENTER" textFill="#e70000">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField id="user" fx:id="user" prefHeight="34.0" prefWidth="262.0"
+                             promptText="USERNAME" style="-fx-border-style: solid; -fx-border-radius: 0px; -fx-border-color: #eee;">
+                     <font>
+                        <Font name="Malgun Gothic Semilight" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField id="pass" fx:id="pass" prefHeight="35.0" prefWidth="241.0"
+                                 promptText="PASSWORD" style="-fx-border-color: #eee; -fx-border-style: solid; -fx-border-radius: 0px;">
+                     <font>
+                        <Font name="Malgun Gothic Semilight" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" right="30.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <Button id="loginBtn" fx:id="loginBtn" mnemonicParsing="false" onAction="#logInAction"
+                          style="-fx-background-color: #ff4141;" text="Log In" textFill="WHITE">
+                     <font>
+                        <Font name="Malgun Gothic Semilight" size="13.0" />
+                     </font>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="9.3" radius="6.49" width="18.66">
+                           <color>
+                              <Color opacity="0.5699999928474426" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+               </children>
+               <effect>
+                  <DropShadow height="11.64" radius="5.32" width="11.64">
+                     <color>
+                        <Color opacity="0.4220890402793884" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -36,9 +36,6 @@ public class EmployeeController {
     private TableColumn<Employee,SimpleIntegerProperty> ageColumn;
 
     @FXML
-    private TableColumn<Employee, SimpleStringProperty> addressColumn;
-
-    @FXML
     private TableColumn<Employee, SimpleDoubleProperty> salaryColumn;
 
     @FXML
@@ -49,9 +46,6 @@ public class EmployeeController {
 
     @FXML
     private TextField ageFId;
-
-    @FXML
-    private TextField addressFId;
 
     @FXML
     private TextField salaryFId;
@@ -68,7 +62,6 @@ public class EmployeeController {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("Age"));
-        addressColumn.setCellValueFactory(new PropertyValueFactory<>("Address"));
         salaryColumn.setCellValueFactory(new PropertyValueFactory<>("Salary"));
 
         ObservableList<Employee> employees = employeeStore.getEmployees();
@@ -80,7 +73,6 @@ public class EmployeeController {
                 firstNameFId.setText(selectedEmployee.getFirstName());
                 lastNameFId.setText(selectedEmployee.getLastName());
                 ageFId.setText(String.valueOf(selectedEmployee.getAge()));
-                addressFId.setText(selectedEmployee.getAddress());
                 salaryFId.setText(String.valueOf(selectedEmployee.getSalary()));
             }
         });
@@ -113,11 +105,6 @@ public class EmployeeController {
             error += "Age must be an integer!\n";
             isValid = false;
         }
-        String address = addressFId.getText();
-        if (address.isEmpty()) {
-            error += "Address cannot be empty!\n";
-            isValid = false;
-        }
 
         Double salary = null;
         if (salaryFId.getText().isEmpty()) {
@@ -131,12 +118,11 @@ public class EmployeeController {
         }
 
         if (isValid) {
-            employeeStore.addEmployee(new Employee(firstName,lastName,age,address,salary));
+            employeeStore.addEmployee(new Employee(firstName,lastName,age, salary));
 
             firstNameFId.clear();
             lastNameFId.clear();
             ageFId.clear();
-            addressFId.clear();
             salaryFId.clear();
             errorMessage.setText("");
         } else {
@@ -174,11 +160,6 @@ public class EmployeeController {
                 error += "Age must be an integer!\n";
                 isValid = false;
             }
-            String address = addressFId.getText();
-            if (address.isEmpty()) {
-                error += "Address cannot be empty!\n";
-                isValid = false;
-            }
 
             Double salary = null;
             if (salaryFId.getText().isEmpty()) {
@@ -192,7 +173,7 @@ public class EmployeeController {
             }
 
             if (isValid) {
-                employeeStore.updateEmployee(selectedEmployee, firstName, lastName, age, address, salary);
+                employeeStore.updateEmployee(selectedEmployee, firstName, lastName, age, salary);
                 errorMessage.setText("");
             } else {
                 errorMessage.setText(error);

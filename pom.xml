@@ -58,7 +58,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.workshop1.miniproject2/com.workshop1.miniproject2.BusinessAplication</mainClass>
+              <mainClass>com.workshop1.miniproject2/com.workshop1.miniproject2.BusinessApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

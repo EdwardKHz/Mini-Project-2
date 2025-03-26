@@ -8,8 +8,8 @@ public class EmployeeStore {
 
     public EmployeeStore() {
         this.employees.addAll(
-                new Employee("John", "Smith", 24, "Beirut", 2300),
-                new Employee("Perla", "Khazzoum", 19, "Antelias",4300)
+                new Employee("John", "Smith", 24, 2300),
+                new Employee("Perla", "Khazzoum", 19, 4300)
         );
     }
 
@@ -26,12 +26,11 @@ public class EmployeeStore {
         employees.remove(employee);
     }
 
-    public void updateEmployee(Employee employee, String firstName, String lastName, int age, String address, double salary) {
+    public void updateEmployee(Employee employee, String firstName, String lastName, int age, double salary) {
         if (employee != null) {
             employee.setFirstName(firstName);
             employee.setLastName(lastName);
             employee.setAge(age);
-            employee.setAddress(address);
             employee.setSalary(salary);
         }
     }
