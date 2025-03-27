@@ -11,10 +11,10 @@ import java.io.IOException;
 public class HomeController {
 
     @FXML
-    public void openEmployeeMng(ActionEvent actionEvent) throws IOException {
+    public void openEmployeeMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
                 getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 620, 530);
         Stage stage = new Stage() ;
         stage.setTitle("Employee Management");
         stage.setScene(scene);
@@ -22,7 +22,7 @@ public class HomeController {
     }
 
 
-    public void openProductMng(ActionEvent actionEvent) throws IOException {
+    public void openProductMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
                 getResource("com/workshop1/miniproject2/views/product-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
@@ -32,7 +32,7 @@ public class HomeController {
         stage.show();
     }
 
-    public void openBuildingMng(ActionEvent actionEvent) throws IOException {
+    public void openBuildingMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
                 getResource("com/workshop1/miniproject2/views/building-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
@@ -42,7 +42,7 @@ public class HomeController {
         stage.show();
     }
 
-    public void openRoomMng(ActionEvent actionEvent) throws IOException {
+    public void openRoomMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
                 getResource("com/workshop1/miniproject2/views/room-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
@@ -52,7 +52,7 @@ public class HomeController {
         stage.show();
     }
 
-    public void openBuildingCollabMng(ActionEvent actionEvent) throws IOException {
+    public void openBuildingCollabMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().
                 getResource("com/workshop1/miniproject2/views/businessCollab-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);

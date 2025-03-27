@@ -8,10 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
@@ -51,14 +48,16 @@ public class EmployeeController {
     private TextField salaryFId;
 
     @FXML
-    private Text errorMessage;
+    private Label errorMessage;
 
     @FXML
     private TableView<Employee> employeeTable;
 
     private final EmployeeStore employeeStore = new EmployeeStore();
 
+    @FXML
     public void initialize() {
+        System.out.println("Employee Controller Initialize");
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("Age"));
@@ -79,7 +78,8 @@ public class EmployeeController {
     }
 
     @FXML
-    void addPerson(ActionEvent event) {
+    void addEmployee(ActionEvent event) {
+        System.out.println("Add Person");
         String error = "";
         boolean isValid = true;
 
@@ -132,6 +132,7 @@ public class EmployeeController {
 
     @FXML
     void updateEmployee (ActionEvent event) {
+        System.out.println("Update Employee");
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
 
         if (selectedEmployee != null) {
@@ -174,10 +175,25 @@ public class EmployeeController {
 
             if (isValid) {
                 employeeStore.updateEmployee(selectedEmployee, firstName, lastName, age, salary);
+                selectedEmployee.setFirstName(firstName);
+                selectedEmployee.setLastName(lastName);
+                selectedEmployee.setAge(age);
+                selectedEmployee.setSalary(salary);
+
+                employeeTable.refresh();
                 errorMessage.setText("");
             } else {
                 errorMessage.setText(error);
             }
+        }
+    }
+
+    @FXML
+    public void deleteEmployee (ActionEvent event) {
+        Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+
+        if (selectedEmployee != null) {
+            employeeStore.deleteEmployee(selectedEmployee);
         }
     }
 
