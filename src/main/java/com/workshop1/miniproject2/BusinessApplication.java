@@ -14,7 +14,7 @@ public class BusinessApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/login-view.fxml"));
         Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root, 650, 500);
+        Scene scene = new Scene(root);
         stage.setTitle("Company Management System");
         stage.setScene(scene);
         stage.setResizable(false);

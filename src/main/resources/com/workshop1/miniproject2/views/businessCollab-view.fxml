@@ -8,9 +8,9 @@
 <?import javafx.scene.text.*?>
 <?import javafx.stage.*?>
 
-<Stage xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
-    <scene>
-        <Scene>
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workshop1.miniproject2.controllers.BusinessCollabController">
+
+
             <AnchorPane prefHeight="446.0" prefWidth="490.0">
             <children>
                <HBox layoutY="-1.0" prefHeight="531.0" prefWidth="603.0">
@@ -59,7 +59,7 @@
                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </VBox.margin>
                            </TextField>
-                           <Label id="errorCollab" fx:id="errorCollab" alignment="CENTER" contentDisplay="CENTER" text="You must fill all fields!" textFill="WHITE">
+                           <Label id="errorCollab"  alignment="CENTER" contentDisplay="CENTER" text="You must fill all fields!" textFill="WHITE">
                               <font>
                                  <Font size="13.0" />
                               </font>
@@ -72,7 +72,7 @@
                                  <Insets left="10.0" right="10.0" top="30.0" />
                               </VBox.margin>
                               <children>
-                                 <Button id="insBtn" fx:id="insBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="51.0" style="-fx-background-color: #ff4141;" text="Insert" textFill="WHITE">
+                                 <Button id="insBtn" fx:id="insBtn" onAction="#insBusinessCollab" mnemonicParsing="false" prefHeight="26.0" prefWidth="51.0" style="-fx-background-color: #ff4141;" text="Insert" textFill="WHITE"  >
                                     <font>
                                        <Font name="Microsoft Sans Serif" size="12.0" />
                                     </font>
@@ -80,7 +80,7 @@
                                        <Insets right="20.0" />
                                     </HBox.margin>
                                  </Button>
-                                 <Button id="updtBtn" fx:id="updtBtn" mnemonicParsing="false" style="-fx-background-color: #ff4141;" text="Update" textFill="WHITE">
+                                 <Button id="updtBtn" fx:id="updtBtn" onAction="#updtBusinessCollab" mnemonicParsing="false" style="-fx-background-color: #ff4141;" text="Update" textFill="WHITE">
                                     <font>
                                        <Font name="Microsoft Sans Serif" size="12.0" />
                                     </font>
@@ -88,15 +88,15 @@
                                        <Insets right="20.0" />
                                     </HBox.margin>
                                  </Button>
-                                 <Button id="delBtn" fx:id="delBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ff4141;" text="Delete" textFill="WHITE" />
+                                 <Button id="delBtn" fx:id="delBtn" onAction="#delBusinessCollab" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ff4141;" text="Delete" textFill="WHITE" />
                               </children>
                            </HBox>
                         </children></VBox>
                      <TableView id="collabTbl" fx:id="collabTbl" prefHeight="531.0" prefWidth="374.0">
                        <columns>
-                         <TableColumn prefWidth="75.0" text="Business Name" />
-                         <TableColumn prefWidth="75.0" text="Location" />
-                         <TableColumn prefWidth="75.0" text="Type of Collab" />
+                          <TableColumn fx:id="bNameCol" text="Business Name" prefWidth="75.0"/>
+                          <TableColumn fx:id="bLocationCol" text="Location" prefWidth="75.0"/>
+                          <TableColumn fx:id="bTypeCol" text="Type of Collab" prefWidth="75.0"/>
                        </columns>
                         <columnResizePolicy>
                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -108,6 +108,5 @@
                   </children>
                </HBox>
             </children></AnchorPane>
-        </Scene>
-    </scene>
-</Stage>
+
+</AnchorPane>

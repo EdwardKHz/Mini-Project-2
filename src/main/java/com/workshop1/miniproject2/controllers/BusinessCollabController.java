@@ -10,9 +10,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.w3c.dom.Text;
+import javafx.scene.text.Text;
+import javafx.event.ActionEvent;
 
-import java.awt.event.ActionEvent;
 
 public class BusinessCollabController {
     @FXML
@@ -44,9 +44,10 @@ public class BusinessCollabController {
 
     @FXML
     public void initialize() {
-        bNameCol.setCellValueFactory(new PropertyValueFactory<>("Business Name"));
-        bLocationCol.setCellValueFactory(new PropertyValueFactory<>("Business Location"));
-        bTypeCol.setCellValueFactory(new PropertyValueFactory<>("Collaboration Type"));
+        bNameCol.setCellValueFactory(new PropertyValueFactory<>("bName"));
+        bLocationCol.setCellValueFactory(new PropertyValueFactory<>("bLocation"));
+        bTypeCol.setCellValueFactory(new PropertyValueFactory<>("bType"));
+
 
         ObservableList<BusinessCollab> businessCollabs = BusinessCollabStore.getInstance().getBusinessCollabsList();
 
@@ -63,7 +64,7 @@ public class BusinessCollabController {
     }
 
     @FXML
-    void insBusinessCollab(ActionEvent event) {
+    public void insBusinessCollab(ActionEvent event) {
         String error="";
         boolean isValid=true;
 
@@ -85,25 +86,29 @@ public class BusinessCollabController {
         }
         if(isValid) {
             bCollabStore.insertBusinessCollab(new BusinessCollab(bName, bLocation, bType));
-            bNameFld.setText("");
-            bLocationFld.setText("");
-            bTypeFld.setText("");
-            errorCollab.setTextContent("");
+            collabTbl.setItems(bCollabStore.getBusinessCollabsList());
+            collabTbl.refresh();
+            bNameFld.clear();
+            bLocationFld.clear();
+            bTypeFld.clear();
+            errorCollab.setText("");
 
         }
         else {
-            errorCollab.setTextContent(error);
+            errorCollab.setText(error);
         }
     }
     @FXML
-    void delBusinessCollab(ActionEvent event) {
+    public void delBusinessCollab(ActionEvent event) {
         BusinessCollab selectedBusiness = collabTbl.getSelectionModel().getSelectedItem();
-        if(selectedBusiness != null) {
+        if (selectedBusiness != null) {
             bCollabStore.deleteBusinessCollab(selectedBusiness);
+            collabTbl.setItems(bCollabStore.getBusinessCollabsList());
+            collabTbl.refresh();
         }
     }
     @FXML
-    void updtBusinessCollab(ActionEvent event) {
+    public void updtBusinessCollab(ActionEvent event) {
         BusinessCollab selectedBusiness = collabTbl.getSelectionModel().getSelectedItem();
         if(selectedBusiness != null) {
             String error="";
@@ -124,11 +129,12 @@ public class BusinessCollabController {
                 error+="Type cannot be empty!\n";
             }
             if(isValid) {
-                bCollabStore.updateBusinessCollab(selectedBusiness,bName,bLocation,bType);
-                errorCollab.setTextContent("");
+                bCollabStore.updateBusinessCollab(selectedBusiness, bName, bLocation, bType);
+                collabTbl.refresh();
+                errorCollab.setText("");
             }
             else {
-                errorCollab.setTextContent(error);
+                errorCollab.setText(error);
             }
         }
     }

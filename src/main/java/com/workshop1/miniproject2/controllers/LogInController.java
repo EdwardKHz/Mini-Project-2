@@ -34,11 +34,7 @@ public class LogInController {
             errorMsg.setText("Please enter all the fields");
             errorMsg.setVisible(true);
         }
-        else if(!username.equals("admin")||!password.equals("CSC265")){
-            errorMsg.setText("Incorrect username and/or password");
-            errorMsg.setVisible(true);
-        }
-        else{
+        else if((username.equals("Joe")&&password.equals("Ghorayeb"))||(username.equals("Edward")&&password.equals("Khazzoum"))||(username.equals("Georges")&&password.equals("Samia"))||(username.equals("Joseph")&&password.equals("Yazbeck"))||(username.equals("Joseph")&&password.equals("Chidiac"))){
             errorMsg.setVisible(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/home-view.fxml"));
             Parent homeRoot = loader.load();
@@ -47,6 +43,11 @@ public class LogInController {
             stage.setScene(homeScene);
             stage.setTitle("Home - Company Management System");
             stage.show();
+        }
+        else{
+            errorMsg.setText("Incorrect username and/or password");
+            errorMsg.setVisible(true);
+
 
         }
     }

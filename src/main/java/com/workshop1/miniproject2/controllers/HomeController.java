@@ -12,50 +12,45 @@ public class HomeController {
 
     @FXML
     public void openEmployeeMng(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-                getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 620, 530);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage() ;
         stage.setTitle("Employee Management");
         stage.setScene(scene);
         stage.show();
     }
 
-
+    @FXML
     public void openProductMng(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-                getResource("com/workshop1/miniproject2/views/product-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/product-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage() ;
         stage.setTitle("Product Management");
         stage.setScene(scene);
         stage.show();
     }
-
+    @FXML
     public void openBuildingMng(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-                getResource("com/workshop1/miniproject2/views/building-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/building-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage() ;
         stage.setTitle("Building Management");
         stage.setScene(scene);
         stage.show();
     }
-
+    @FXML
     public void openRoomMng(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-                getResource("com/workshop1/miniproject2/views/room-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/room-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage() ;
         stage.setTitle("Room Management");
         stage.setScene(scene);
         stage.show();
     }
-
+    @FXML
     public void openBuildingCollabMng(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-                getResource("com/workshop1/miniproject2/views/businessCollab-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/businessCollab-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage() ;
         stage.setTitle("Business Collab Management");
         stage.setScene(scene);
