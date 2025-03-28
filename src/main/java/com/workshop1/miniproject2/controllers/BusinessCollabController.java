@@ -5,13 +5,16 @@ import com.workshop1.miniproject2.models.BusinessCollabStore;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 
 public class BusinessCollabController {
@@ -38,7 +41,7 @@ public class BusinessCollabController {
     @FXML
     private Button updtBtn;
     @FXML
-    private Text errorCollab;
+    private Label errorCollab;
 
     private final BusinessCollabStore bCollabStore = new BusinessCollabStore();
 
@@ -52,6 +55,8 @@ public class BusinessCollabController {
         ObservableList<BusinessCollab> businessCollabs = BusinessCollabStore.getInstance().getBusinessCollabsList();
 
         collabTbl.setItems(businessCollabs);
+        errorCollab.setVisible(false);
+
 
         collabTbl.getSelectionModel().selectedItemProperty().addListener(evt -> {
             BusinessCollab selectedBusiness = collabTbl.getSelectionModel().getSelectedItem();
@@ -72,17 +77,20 @@ public class BusinessCollabController {
         if(bName.isEmpty()) {
             error+="Name cannot be empty!\n";
             isValid=false;
+            errorCollab.setVisible(true);
         }
 
         String bLocation = bLocationFld.getText();
         if(bLocationFld.getText().isEmpty()) {
             error+="Location cannot be empty!\n";
             isValid=false;
+            errorCollab.setVisible(true);
         }
         String bType = bTypeFld.getText();
         if(bType.isEmpty()) {
             error+="Type cannot be empty!\n";
             isValid=false;
+            errorCollab.setVisible(true);
         }
         if(isValid) {
             bCollabStore.insertBusinessCollab(new BusinessCollab(bName, bLocation, bType));
@@ -92,6 +100,8 @@ public class BusinessCollabController {
             bLocationFld.clear();
             bTypeFld.clear();
             errorCollab.setText("");
+            errorCollab.setVisible(false);
+
 
         }
         else {
@@ -118,24 +128,43 @@ public class BusinessCollabController {
             if(bName.isEmpty()) {
                 error+="Name cannot be empty!\n";
                 isValid=false;
+                errorCollab.setVisible(true);
             }
             String bLocation = bLocationFld.getText();
             if(bLocation.isEmpty()) {
                 error+="Location cannot be empty!\n";
                 isValid=false;
+                errorCollab.setVisible(true);
             }
             String bType = bTypeFld.getText();
             if(bType.isEmpty()) {
                 error+="Type cannot be empty!\n";
+                isValid=false;
+                errorCollab.setVisible(true);
             }
             if(isValid) {
                 bCollabStore.updateBusinessCollab(selectedBusiness, bName, bLocation, bType);
                 collabTbl.refresh();
                 errorCollab.setText("");
+                errorCollab.setVisible(false);
+
             }
             else {
                 errorCollab.setText(error);
             }
         }
+    }
+    @FXML
+    public void backAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/home-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+        stage.setTitle("Company Management System");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 }

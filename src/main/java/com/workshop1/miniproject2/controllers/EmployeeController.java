@@ -65,6 +65,7 @@ public class EmployeeController {
 
         ObservableList<Employee> employees = employeeStore.getEmployees();
         employeeTable.setItems(employees);
+        errorMessage.setVisible(false);
 
         employeeTable.getSelectionModel().selectedItemProperty().addListener(evt -> {
             Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();

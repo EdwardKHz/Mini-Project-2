@@ -1,15 +1,18 @@
 package com.workshop1.miniproject2.controllers;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class HomeController {
-
+    @FXML
+    private Button BusinessCollabMngBtn = new Button();
     @FXML
     public void openEmployeeMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
@@ -18,6 +21,7 @@ public class HomeController {
         stage.setTitle("Employee Management");
         stage.setScene(scene);
         stage.show();
+
     }
 
     @FXML
@@ -55,5 +59,8 @@ public class HomeController {
         stage.setTitle("Business Collab Management");
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2 = (Stage) BusinessCollabMngBtn.getScene().getWindow();
+        stage2.close();
     }
 }
