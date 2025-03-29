@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workshop1.miniproject2.controllers.ProductController">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workshop1.miniproject2.controllers.ProductController" prefWidth = "700.0" prefHeight="500.0">
     <children>
         <HBox layoutY="-1.0" prefHeight="531.0" prefWidth="603.0">
             <children>

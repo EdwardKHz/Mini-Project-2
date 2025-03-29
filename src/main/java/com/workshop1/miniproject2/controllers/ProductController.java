@@ -4,29 +4,17 @@ import com.workshop1.miniproject2.models.Products;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.*;
 
 public class ProductController {
 
-    @FXML
-    private TextField typeField, quantityField, costField, valueField;
-    @FXML
-    private Button addButton, deleteButton, modifyButton;
-    @FXML
-    private TableView<Products> productTable;
-    @FXML
-    private TableColumn<Products, String> typeColumn;
-    @FXML
-    private TableColumn<Products, Integer> quantityColumn;
-    @FXML
-    private TableColumn<Products, Double> costColumn;
-    @FXML
-    private TableColumn<Products, Double> valueColumn;
+    @FXML private TextField typeField, quantityField, costField, valueField;
+    @FXML private Button addButton, deleteButton, modifyButton;
+    @FXML private TableView<Products> productTable;
+    @FXML private TableColumn<Products, String> typeColumn;
+    @FXML private TableColumn<Products, Integer> quantityColumn;
+    @FXML private TableColumn<Products, Double> costColumn;
+    @FXML private TableColumn<Products, Double> valueColumn;
 
     private ObservableList<Products> productList = FXCollections.observableArrayList();
 
@@ -38,7 +26,7 @@ public class ProductController {
         valueColumn.setCellValueFactory(cellData -> cellData.getValue().valueProperty().asObject());
 
         productList.add(new Products("Pepperoni Pizza", 2, 10, 20));
-        productList.add(new Products("Cheese Pizza",2 , 20, 40));
+        productList.add(new Products("Cheese Pizza", 2, 20, 40));
 
         productTable.setItems(productList);
 
@@ -48,6 +36,7 @@ public class ProductController {
 
         quantityField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
         costField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
+
     }
 
     private void updateValue() {
@@ -114,7 +103,7 @@ public class ProductController {
     }
 
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

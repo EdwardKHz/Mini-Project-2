@@ -19,14 +19,13 @@ public class ProductsList extends Application {
             Parent root = loader.load();
 
             Scene scene = new Scene(root, 600, 400);
-
             primaryStage.setScene(scene);
             primaryStage.setTitle("Product List");
-            primaryStage.setResizable(true);
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error loading FXML: " + e.getMessage());
+            System.err.println("Error loading FXML: " + e.getMessage());
         }
     }
 }
