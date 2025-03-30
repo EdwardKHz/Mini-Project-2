@@ -19,7 +19,7 @@
                <children>
                    <VBox prefHeight="531.0" prefWidth="291.0" style="-fx-background-color: #ff4141;">
                        <children>
-                           <Button id="backBtn" fx:id="backBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="52.0" style="-fx-background-color: #ff4141; -fx-border-color: white; -fx-border-style: solid; -fx-border-radius: 2px; -fx-border-width: 2px;" text="Back" textFill="WHITE">
+                           <Button id="backBtn" fx:id="backBtn" onAction="#backAction" alignment="CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="52.0" style="-fx-background-color: #ff4141; -fx-border-color: white; -fx-border-style: solid; -fx-border-radius: 2px; -fx-border-width: 2px;" text="Back" textFill="WHITE">
                                <font>
                                    <Font name="Microsoft Sans Serif" size="12.0" />
                                </font>

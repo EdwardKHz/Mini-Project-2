@@ -4,13 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class EmployeeStore {
-    private final ObservableList<Employee> employees = FXCollections.observableArrayList();
+    public static boolean isInitialized = false;
+    private static final ObservableList<Employee> employees = FXCollections.observableArrayList();
 
     public EmployeeStore() {
-        this.employees.addAll(
-                new Employee("John", "Smith", 24, 2300),
-                new Employee("Perla", "Khazzoum", 19, 4300)
-        );
+        if (!isInitialized) {
+            employees.addAll(
+                    new Employee("John", "Smith", 24, 2300),
+                    new Employee("Perla", "Khazzoum", 19, 4300)
+            );
+            isInitialized = true;
+        }
     }
 
     public ObservableList<Employee> getEmployees() {

@@ -14,13 +14,18 @@ public class HomeController {
     @FXML
     private Button BusinessCollabMngBtn = new Button();
     @FXML
+    private Button EmployeeMngBtn = new Button();
+    @FXML
     public void openEmployeeMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage() ;
-        stage.setTitle("Employee Management");
+        stage.setTitle("Employee Management System");
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow();
+        stage2.close();
 
     }
 

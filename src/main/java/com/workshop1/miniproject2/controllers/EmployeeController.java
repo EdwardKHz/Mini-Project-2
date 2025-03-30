@@ -8,11 +8,20 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class EmployeeController {
+
+    @FXML
+    private Button backBtn;
 
     @FXML
     private Button addButton;
@@ -196,6 +205,20 @@ public class EmployeeController {
         if (selectedEmployee != null) {
             employeeStore.deleteEmployee(selectedEmployee);
         }
+    }
+
+    @FXML
+    public void backAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/home-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+        stage.setTitle("Company Management System");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
 
