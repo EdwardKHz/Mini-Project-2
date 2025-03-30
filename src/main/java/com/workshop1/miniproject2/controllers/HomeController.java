@@ -19,12 +19,13 @@ public class HomeController {
     public void openEmployeeMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage() ;
+        Stage stage = new Stage();
+        stage.setResizable(false);
         stage.setTitle("Employee Management System");
         stage.setScene(scene);
-        stage.show();
+        stage.show(); // creates and shows new stage
 
-        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow();
+        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow(); //gets current stage
         stage2.close();
 
     }

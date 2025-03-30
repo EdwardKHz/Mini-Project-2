@@ -71,10 +71,11 @@ public class EmployeeController {
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("Age"));
         salaryColumn.setCellValueFactory(new PropertyValueFactory<>("Salary"));
+        //assigns columns to corresponding properties
 
         ObservableList<Employee> employees = employeeStore.getEmployees();
         employeeTable.setItems(employees);
-        errorMessage.setVisible(false);
+        //gets array of employees and puts them into the table
 
         employeeTable.getSelectionModel().selectedItemProperty().addListener(evt -> {
             Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
@@ -85,8 +86,10 @@ public class EmployeeController {
                 salaryFId.setText(String.valueOf(selectedEmployee.getSalary()));
             }
         });
+        //selects employee that is clicked and puts its values into the corresponding text fields
     }
 
+    //Adds employee to array with error validation
     @FXML
     void addEmployee(ActionEvent event) {
         System.out.println("Add Person");
@@ -140,6 +143,7 @@ public class EmployeeController {
         }
     }
 
+    //Updates selected employee with error validation
     @FXML
     void updateEmployee (ActionEvent event) {
         System.out.println("Update Employee");
@@ -198,6 +202,7 @@ public class EmployeeController {
         }
     }
 
+    //deletes selected employee as long as not null
     @FXML
     public void deleteEmployee (ActionEvent event) {
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
@@ -207,6 +212,7 @@ public class EmployeeController {
         }
     }
 
+    //go backs to home stage
     @FXML
     public void backAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) backBtn.getScene().getWindow();

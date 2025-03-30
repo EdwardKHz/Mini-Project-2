@@ -8,7 +8,9 @@ public class EmployeeStore {
     private static final ObservableList<Employee> employees = FXCollections.observableArrayList();
 
     public EmployeeStore() {
+        // add dummy data only when array is first initialized
         if (!isInitialized) {
+            //dummy data
             employees.addAll(
                     new Employee("John", "Smith", 24, 2300),
                     new Employee("Perla", "Khazzoum", 19, 4300)
