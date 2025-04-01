@@ -9,7 +9,7 @@ public class RoomStore {
 
     public RoomStore() {
         this.rooms.addAll(
-                new Room(27, 3, "HS")
+                new Room(27, 3, "HS"),
         new Room(12,4,"Georges Samia")
         );
     }

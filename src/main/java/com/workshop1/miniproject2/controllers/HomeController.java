@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +18,14 @@ public class HomeController {
     @FXML
     private Button EmployeeMngBtn = new Button();
     @FXML
+    private Label welcomeMsg;
+    @FXML
+    private TextField user;
+    @FXML
+    public void setWelcomeMsg(String username) {
+        welcomeMsg.setText("WELCOME, " + username.toUpperCase()+"!");
+        welcomeMsg.setVisible(true);
+    }
     public void openEmployeeMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -23,9 +33,9 @@ public class HomeController {
         stage.setResizable(false);
         stage.setTitle("Employee Management System");
         stage.setScene(scene);
-        stage.show(); // creates and shows new stage
+        stage.show();
 
-        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow(); //gets current stage
+        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow();
         stage2.close();
 
     }
@@ -38,6 +48,9 @@ public class HomeController {
         stage.setTitle("Product Management");
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow();
+        stage2.close();
     }
     @FXML
     public void openBuildingMng(ActionEvent actionEvent) throws Exception {
@@ -56,6 +69,9 @@ public class HomeController {
         stage.setTitle("Room Management");
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2 = (Stage) BusinessCollabMngBtn.getScene().getWindow();
+        stage2.close();
     }
     @FXML
     public void openBuildingCollabMng(ActionEvent actionEvent) throws Exception {
