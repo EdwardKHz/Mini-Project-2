@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class HomeController {
     @FXML
@@ -21,10 +23,20 @@ public class HomeController {
     private Label welcomeMsg;
     @FXML
     private TextField user;
+
+    public void initialize(URL location, ResourceBundle resources) {
+        if (welcomeMsg.getText().equals("WELCOME ")) {
+            welcomeMsg.setVisible(false);
+        }
+    }
     @FXML
     public void setWelcomeMsg(String username) {
-        welcomeMsg.setText("WELCOME, " + username.toUpperCase()+"!");
-        welcomeMsg.setVisible(true);
+        if (username != null && !username.trim().isEmpty()) {
+            welcomeMsg.setText("WELCOME " + username.toUpperCase() + "!");
+            welcomeMsg.setVisible(true);
+        }else{
+            welcomeMsg.setVisible(false);
+        }
     }
     public void openEmployeeMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
@@ -37,6 +49,7 @@ public class HomeController {
 
         Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow();
         stage2.close();
+        welcomeMsg.setVisible(false);
 
     }
 
@@ -51,6 +64,7 @@ public class HomeController {
 
         Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow();
         stage2.close();
+        welcomeMsg.setVisible(false);
     }
     @FXML
     public void openBuildingMng(ActionEvent actionEvent) throws Exception {
@@ -72,6 +86,7 @@ public class HomeController {
 
         Stage stage2 = (Stage) BusinessCollabMngBtn.getScene().getWindow();
         stage2.close();
+        welcomeMsg.setVisible(false);
     }
     @FXML
     public void openBuildingCollabMng(ActionEvent actionEvent) throws Exception {
@@ -84,5 +99,6 @@ public class HomeController {
 
         Stage stage2 = (Stage) BusinessCollabMngBtn.getScene().getWindow();
         stage2.close();
+        welcomeMsg.setVisible(false);
     }
 }
