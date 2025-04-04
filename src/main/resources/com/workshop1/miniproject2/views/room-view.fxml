@@ -1,14 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.workshop1.miniproject2.views.RoomView"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workshop1.miniproject2.controllers.RoomController">
+
+
+    <AnchorPane prefHeight="446.0" prefWidth="490.0">
+        <children>
+            <HBox layoutY="-1.0" prefHeight="531.0" prefWidth="603.0">
+                <children>
+                    <VBox prefHeight="531.0" prefWidth="291.0" style="-fx-background-color: #ff4141;">
+                        <children>
+                            <Button id="backBtn" fx:id="backBtn" alignment="CENTER" mnemonicParsing="false" onAction="#backAction" prefHeight="16.0" prefWidth="52.0" style="-fx-background-color: #ff4141; -fx-border-color: white; -fx-border-style: solid; -fx-border-radius: 2px; -fx-border-width: 2px;" text="Back" textFill="WHITE">
+                                <font>
+                                    <Font name="Microsoft Sans Serif" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                </VBox.margin>
+                            </Button>
+                            <Label alignment="CENTER" prefHeight="33.0" prefWidth="235.0" text="Rooms" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="19.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets top="10.0" />
+                                </VBox.margin>
+                            </Label>
+                            <ImageView fitHeight="93.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" left="70.0" right="10.0" top="10.0" />
+                                </VBox.margin>
+                                <image>
+                                    <Image url="@../../../../images/hotel.png" />
+                                </image>
+                            </ImageView>
+                            <TextField id="rNumberFld" fx:id="rNumberFld" prefHeight="33.0" prefWidth="235.0" promptText="Room Number">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                                </VBox.margin>
+                                <font>
+                                    <Font name="MS Outlook" size="12.0" />
+                                </font>
+                            </TextField>
+                            <TextField id="floorFld" fx:id="floorFld" prefHeight="34.0" prefWidth="214.0" promptText="Floor">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <TextField id="buildingFld" fx:id="buildingFld" prefHeight="34.0" prefWidth="235.0" promptText="Building">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                </VBox.margin>
+                            </TextField>
+
+                            <Label fx:id="errorRooms" alignment="CENTER" contentDisplay="CENTER" text="You must fill all fields!" textFill="WHITE">
+                                <VBox.margin>
+                                    <Insets left="55.0" top="15.0" />
+                                </VBox.margin>
+                                <font>
+                                    <Font size="13.0" />
+                                </font>
+                            </Label>
+                            <HBox prefHeight="68.0" prefWidth="235.0" style="-fx-background-color: white; -fx-alignment: center; -fx-border-color: #aaa; -fx-border-width: 5px;">
+                                <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="30.0" />
+                                </VBox.margin>
+                                <children>
+                                    <Button id="insBtn" fx:id="insBtn" mnemonicParsing="false" onAction="#insertRoom" prefHeight="26.0" prefWidth="51.0" style="-fx-background-color: #ff4141;" text="Insert" textFill="WHITE">
+                                        <font>
+                                            <Font name="Microsoft Sans Serif" size="12.0" />
+                                        </font>
+                                        <HBox.margin>
+                                            <Insets right="20.0" />
+                                        </HBox.margin>
+                                    </Button>
+                                    <Button id="updtBtn" fx:id="updtBtn" mnemonicParsing="false" onAction="#updateRoom" style="-fx-background-color: #ff4141;" text="Update" textFill="WHITE">
+                                        <font>
+                                            <Font name="Microsoft Sans Serif" size="12.0" />
+                                        </font>
+                                        <HBox.margin>
+                                            <Insets right="20.0" />
+                                        </HBox.margin>
+                                    </Button>
+                                    <Button id="delBtn" fx:id="delBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteRoom" style="-fx-background-color: #ff4141;" text="Delete" textFill="WHITE" />
+                                </children>
+                            </HBox>
+                        </children></VBox>
+                    <TableView id="roomTbl" fx:id="roomTbl" prefHeight="531.0" prefWidth="374.0">
+                        <columns>
+                            <TableColumn fx:id="rNumberCol" prefWidth="75.0" text="Room Number" />
+                            <TableColumn fx:id="floorCol" prefWidth="75.0" text="Floor" />
+                            <TableColumn fx:id="buildingCol" prefWidth="75.0" text="Building" />
+                        </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                        <HBox.margin>
+                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        </HBox.margin>
+                    </TableView>
+                </children>
+            </HBox>
+        </children></AnchorPane>
 
 </AnchorPane>

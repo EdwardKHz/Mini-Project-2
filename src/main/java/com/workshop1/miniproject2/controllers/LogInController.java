@@ -38,6 +38,8 @@ public class LogInController {
             errorMsg.setVisible(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/home-view.fxml"));
             Parent homeRoot = loader.load();
+            HomeController homeController = loader.getController();
+            homeController.setWelcomeMsg(username);
             Scene homeScene = new Scene(homeRoot);
             Stage stage = (Stage) user.getScene().getWindow();
             stage.setScene(homeScene);

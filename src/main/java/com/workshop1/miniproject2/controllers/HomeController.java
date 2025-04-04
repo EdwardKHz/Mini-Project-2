@@ -6,9 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class HomeController {
     @FXML
@@ -16,6 +20,24 @@ public class HomeController {
     @FXML
     private Button EmployeeMngBtn = new Button();
     @FXML
+    private Label welcomeMsg;
+    @FXML
+    private TextField user;
+
+    public void initialize(URL location, ResourceBundle resources) {
+        if (welcomeMsg.getText().equals("WELCOME ")) {
+            welcomeMsg.setVisible(false);
+        }
+    }
+    @FXML
+    public void setWelcomeMsg(String username) {
+        if (username != null && !username.trim().isEmpty()) {
+            welcomeMsg.setText("WELCOME " + username.toUpperCase() + "!");
+            welcomeMsg.setVisible(true);
+        }else{
+            welcomeMsg.setVisible(false);
+        }
+    }
     public void openEmployeeMng(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/employee-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -23,10 +45,11 @@ public class HomeController {
         stage.setResizable(false);
         stage.setTitle("Employee Management System");
         stage.setScene(scene);
-        stage.show(); // creates and shows new stage
+        stage.show();
 
-        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow(); //gets current stage
+        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow();
         stage2.close();
+        welcomeMsg.setVisible(false);
 
     }
 
@@ -38,6 +61,10 @@ public class HomeController {
         stage.setTitle("Product Management");
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2 = (Stage) EmployeeMngBtn.getScene().getWindow();
+        stage2.close();
+        welcomeMsg.setVisible(false);
     }
     @FXML
     public void openBuildingMng(ActionEvent actionEvent) throws Exception {
@@ -56,6 +83,10 @@ public class HomeController {
         stage.setTitle("Room Management");
         stage.setScene(scene);
         stage.show();
+
+        Stage stage2 = (Stage) BusinessCollabMngBtn.getScene().getWindow();
+        stage2.close();
+        welcomeMsg.setVisible(false);
     }
     @FXML
     public void openBuildingCollabMng(ActionEvent actionEvent) throws Exception {
@@ -68,5 +99,6 @@ public class HomeController {
 
         Stage stage2 = (Stage) BusinessCollabMngBtn.getScene().getWindow();
         stage2.close();
+        welcomeMsg.setVisible(false);
     }
 }
