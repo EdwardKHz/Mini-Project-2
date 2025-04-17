@@ -17,20 +17,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class EmployeeController {
 
     @FXML
     private Button backBtn;
-
-    @FXML
-    private Button addButton;
-
-    @FXML
-    private Button deleteButton;
-
-    @FXML
-    private Button updateButton;
 
     @FXML
     private TableColumn<Employee, SimpleStringProperty> firstNameColumn;
@@ -63,6 +55,7 @@ public class EmployeeController {
     private TableView<Employee> employeeTable;
 
     private final EmployeeStore employeeStore = new EmployeeStore();
+
 
     @FXML
     public void initialize() {
