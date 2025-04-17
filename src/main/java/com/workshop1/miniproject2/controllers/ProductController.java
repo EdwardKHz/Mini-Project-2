@@ -1,7 +1,7 @@
 package com.workshop1.miniproject2.controllers;
 
-
 import com.workshop1.miniproject2.models.Products;
+import com.workshop1.miniproject2.models.ProductStore;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,9 +33,8 @@ public class ProductController {
         costColumn.setCellValueFactory(cellData -> cellData.getValue().costProperty().asObject());
         valueColumn.setCellValueFactory(cellData -> cellData.getValue().valueProperty().asObject());
 
-        productList.add(new Products("Pepperoni Pizza", 2, 10, 20));
-        productList.add(new Products("Cheese Pizza", 2, 20, 40));
-
+        // Load products from the database
+        productList = ProductStore.getAllProducts();
         productTable.setItems(productList);
 
         addButton.setOnAction(event -> handleAddProduct());
@@ -44,7 +43,6 @@ public class ProductController {
 
         quantityField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
         costField.textProperty().addListener((observable, oldValue, newValue) -> updateValue());
-
     }
 
     private void updateValue() {
@@ -68,13 +66,14 @@ public class ProductController {
 
             if (!type.isEmpty() && quantity > 0 && cost > 0) {
                 Products newProduct = new Products(type, quantity, cost, value);
-                productList.add(newProduct);
+                ProductStore.addProduct(newProduct);  // Add to DB
+                productList.add(newProduct);  // Update table view
                 clearFields();
             } else {
-                showAlert("Invalid Input", "Please ensure all fields are correctly filled.");
+                showAlert("Invalid Input", "Ensure all fields are correctly filled.");
             }
         } catch (NumberFormatException e) {
-            showAlert("Invalid Input", "Please enter valid numbers.");
+            showAlert("Invalid Input", "Please enter valid numbers");
         }
     }
 
@@ -82,9 +81,11 @@ public class ProductController {
     public void handleDeleteProduct() {
         Products selectedProduct = productTable.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
+            int productId = selectedProduct.getId();
+            ProductStore.deleteProduct(productId);
             productList.remove(selectedProduct);
         } else {
-            showAlert("No Product Selected", "Please select a product to delete.");
+            showAlert("No Product Selected", "Select a product to delete");
         }
     }
 
@@ -98,8 +99,15 @@ public class ProductController {
             valueField.setText(String.valueOf(selectedProduct.getValue()));
 
             productList.remove(selectedProduct);
+            selectedProduct.setType(typeField.getText());
+            selectedProduct.setQuantity(Integer.parseInt(quantityField.getText()));
+            selectedProduct.setCost(Double.parseDouble(costField.getText()));
+            selectedProduct.setValue(Double.parseDouble(valueField.getText()));
+
+            ProductStore.updateProduct(selectedProduct, selectedProduct.getId());
+            productList.add(selectedProduct);
         } else {
-            showAlert("No Product Selected", "Please select a product to modify.");
+            showAlert("No Product Selected", "Select a product to modify");
         }
     }
 
@@ -117,9 +125,9 @@ public class ProductController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     @FXML
     public void backAction(ActionEvent event) throws IOException {
-
         Stage stage = (Stage) backBtn.getScene().getWindow();
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/home-view.fxml"));

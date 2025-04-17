@@ -3,16 +3,37 @@ package com.workshop1.miniproject2.models;
 import javafx.beans.property.*;
 
 public class Products {
-    private final StringProperty type;
-    private final IntegerProperty quantity;
-    private final DoubleProperty cost;
-    private final DoubleProperty value;
+    private final IntegerProperty id = new SimpleIntegerProperty();
+    private final StringProperty type = new SimpleStringProperty();
+    private final IntegerProperty quantity = new SimpleIntegerProperty();
+    private final DoubleProperty cost = new SimpleDoubleProperty();
+    private final DoubleProperty value = new SimpleDoubleProperty();
+
+    public Products(int id, String type, int quantity, double cost, double value) {
+        this.id.set(id);
+        this.type.set(type);
+        this.quantity.set(quantity);
+        this.cost.set(cost);
+        this.value.set(value);
+    }
 
     public Products(String type, int quantity, double cost, double value) {
-        this.type = new SimpleStringProperty(type);
-        this.quantity = new SimpleIntegerProperty(quantity);
-        this.cost = new SimpleDoubleProperty(cost);
-        this.value = new SimpleDoubleProperty(value);
+        this.type.set(type);
+        this.quantity.set(quantity);
+        this.cost.set(cost);
+        this.value.set(value);
+    }
+
+    public int getId() {
+        return id.get();
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
+    }
+
+    public IntegerProperty idProperty() {
+        return id;
     }
 
     public String getType() {
