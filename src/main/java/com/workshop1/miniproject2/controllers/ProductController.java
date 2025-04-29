@@ -66,8 +66,8 @@ public class ProductController {
 
             if (!type.isEmpty() && quantity > 0 && cost > 0) {
                 Products newProduct = new Products(type, quantity, cost, value);
-                ProductStore.addProduct(newProduct);  // Add to DB
-                productList.add(newProduct);  // Update table view
+                ProductStore.addProduct(newProduct);  
+                productList.add(newProduct);
                 clearFields();
             } else {
                 showAlert("Invalid Input", "Ensure all fields are correctly filled.");
