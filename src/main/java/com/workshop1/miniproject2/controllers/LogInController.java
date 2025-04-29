@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.*;
 
 public class LogInController {
     @FXML
@@ -51,6 +52,28 @@ public class LogInController {
             errorMsg.setVisible(true);
 
 
+        }
+    }
+
+    private boolean validateCredentials(String username, String password) {
+        String dbURL = "jdbc:mysql://localhost:3306/workshopdb";
+        String dbUsername = "root";
+        String dbPassword = "workshop2025";
+
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+        try { Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+             PreparedStatement statement = conn.prepareStatement(query);
+
+             statement.setString(1, username);
+             statement.setString(2, password);
+
+             ResultSet rs = statement.executeQuery();
+            return rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
