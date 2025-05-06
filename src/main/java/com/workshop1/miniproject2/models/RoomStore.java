@@ -2,21 +2,29 @@ package com.workshop1.miniproject2.models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.*;
 
 public class RoomStore {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/productdb";
-    private static final String USER = "root";
-    private static final String PASSWORD = "yourpassword";
 
-    public static ObservableList<Room> getAllRooms() {
-        ObservableList<Room> rooms = FXCollections.observableArrayList();
+    private ObservableList<Room> rooms = FXCollections.observableArrayList();
+    private String dbURL = "jdbc:mysql://localhost:3306/mini-project-2";
+    private String dbUsername = "root";
+    private String dbPassword = "123456";
+
+    public RoomStore() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ObservableList<Room> getRooms() {
         String query = "SELECT * FROM rooms";
-
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
+        rooms.clear();
+        try (Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(query)) {
 
             while (rs.next()) {
                 Room room = new Room(
@@ -26,57 +34,56 @@ public class RoomStore {
                 );
                 rooms.add(room);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-
         return rooms;
     }
 
-    public static void addRoom(Room room) {
+    public void addRoom(Room room) {
         String query = "INSERT INTO rooms (rNumber, floor, building) VALUES (?, ?, ?)";
+        try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+             PreparedStatement statement = conn.prepareStatement(query)) {
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+            statement.setInt(1, room.getrNumber());
+            statement.setInt(2, room.getFloor());
+            statement.setString(3, room.getBuilding());
+            statement.executeUpdate();
 
-            stmt.setInt(1, room.getrNumber());
-            stmt.setInt(2, room.getFloor());
-            stmt.setString(3, room.getBuilding());
-            stmt.executeUpdate();
+            rooms.add(room);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void deleteRoom(Room room) {
+    public void deleteRoom(Room room) {
         String query = "DELETE FROM rooms WHERE rNumber = ? AND floor = ? AND building = ?";
+        try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+             PreparedStatement statement = conn.prepareStatement(query)) {
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+            statement.setInt(1, room.getrNumber());
+            statement.setInt(2, room.getFloor());
+            statement.setString(3, room.getBuilding());
+            statement.executeUpdate();
 
-            stmt.setInt(1, room.getrNumber());
-            stmt.setInt(2, room.getFloor());
-            stmt.setString(3, room.getBuilding());
-            stmt.executeUpdate();
+            rooms.remove(room);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void updateRoom(Room room, int newNumber, int newFloor, String newBuilding) {
+    public void updateRoom(Room room, int newNumber, int newFloor, String newBuilding) {
         String query = "UPDATE rooms SET rNumber = ?, floor = ?, building = ? WHERE rNumber = ? AND floor = ? AND building = ?";
+        try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+             PreparedStatement statement = conn.prepareStatement(query)) {
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setInt(1, newNumber);
-            stmt.setInt(2, newFloor);
-            stmt.setString(3, newBuilding);
-            stmt.setInt(4, room.getrNumber());
-            stmt.setInt(5, room.getFloor());
-            stmt.setString(6, room.getBuilding());
-
-            stmt.executeUpdate();
+            statement.setInt(1, newNumber);
+            statement.setInt(2, newFloor);
+            statement.setString(3, newBuilding);
+            statement.setInt(4, room.getrNumber());
+            statement.setInt(5, room.getFloor());
+            statement.setString(6, room.getBuilding());
+            statement.executeUpdate();
 
             room.setrNumber(newNumber);
             room.setFloor(newFloor);

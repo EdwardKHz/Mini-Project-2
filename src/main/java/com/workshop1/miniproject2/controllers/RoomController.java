@@ -2,7 +2,8 @@ package com.workshop1.miniproject2.controllers;
 
 import com.workshop1.miniproject2.models.Room;
 import com.workshop1.miniproject2.models.RoomStore;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import java.io.IOException;
 
 public class RoomController {
@@ -27,22 +29,49 @@ public class RoomController {
     @FXML private Button updtBtn;
     @FXML private Label errorRooms;
 
+    private RoomStore roomStore;
+
+    public RoomController() {
+        this.roomStore = new RoomStore();
+    }
+
     @FXML
     public void initialize() {
-        rNumberCol.setCellValueFactory(cellData -> cellData.getValue().rNumberProperty());
-        floorCol.setCellValueFactory(cellData -> cellData.getValue().floorProperty());
-        buildingCol.setCellValueFactory(cellData -> cellData.getValue().buildingProperty());
+        // Set cell value factories without lambdas
+        rNumberCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Room, Number>, ObservableValue<Number>>() {
+            @Override
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<Room, Number> cellData) {
+                return cellData.getValue().rNumberProperty();
+            }
+        });
 
-        ObservableList<Room> rooms = RoomStore.getAllRooms();
+        floorCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Room, Number>, ObservableValue<Number>>() {
+            @Override
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<Room, Number> cellData) {
+                return cellData.getValue().floorProperty();
+            }
+        });
+
+        buildingCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Room, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Room, String> cellData) {
+                return cellData.getValue().buildingProperty();
+            }
+        });
+
+        ObservableList<Room> rooms = roomStore.getRooms();
         roomTbl.setItems(rooms);
         errorRooms.setVisible(false);
 
-        roomTbl.getSelectionModel().selectedItemProperty().addListener(evt -> {
-            Room selectedRoom = roomTbl.getSelectionModel().getSelectedItem();
-            if (selectedRoom != null) {
-                rNumberFld.setText(String.valueOf(selectedRoom.getrNumber()));
-                floorFld.setText(String.valueOf(selectedRoom.getFloor()));
-                buildingFld.setText(selectedRoom.getBuilding());
+        // Selection listener without lambda
+        roomTbl.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Room>() {
+            @Override
+            public void changed(ObservableValue<? extends Room> observable, Room oldValue, Room newValue) {
+                if (newValue != null) {
+                    rNumberFld.setText(String.valueOf(newValue.getrNumber()));
+                    floorFld.setText(String.valueOf(newValue.getFloor()));
+                    buildingFld.setText(newValue.getBuilding());
+                }
             }
         });
     }
@@ -65,8 +94,7 @@ public class RoomController {
 
             if (isValid) {
                 Room newRoom = new Room(rNumber, floor, building);
-                RoomStore.addRoom(newRoom);
-                roomTbl.setItems(RoomStore.getAllRooms());
+                roomStore.addRoom(newRoom);
                 roomTbl.refresh();
                 clearFields();
                 errorRooms.setText("");
@@ -84,8 +112,7 @@ public class RoomController {
     public void deleteRoom(ActionEvent event) {
         Room selectedRoom = roomTbl.getSelectionModel().getSelectedItem();
         if (selectedRoom != null) {
-            RoomStore.deleteRoom(selectedRoom);
-            roomTbl.setItems(RoomStore.getAllRooms());
+            roomStore.deleteRoom(selectedRoom);
             roomTbl.refresh();
             clearFields();
         }
@@ -110,8 +137,7 @@ public class RoomController {
                 }
 
                 if (isValid) {
-                    RoomStore.updateRoom(selectedRoom, rNumber, floor, building);
-                    roomTbl.setItems(RoomStore.getAllRooms());
+                    roomStore.updateRoom(selectedRoom, rNumber, floor, building);
                     roomTbl.refresh();
                     errorRooms.setText("");
                     errorRooms.setVisible(false);
