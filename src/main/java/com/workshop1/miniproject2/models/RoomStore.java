@@ -2,27 +2,22 @@ package com.workshop1.miniproject2.models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import java.sql.*;
 
 public class RoomStore {
-    private ObservableList<Room> rooms = FXCollections.observableArrayList();
-    private static final RoomStore instance = new RoomStore();
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/productdb";
+    private static final String USER = "root";
+    private static final String PASSWORD = "yourpassword";
 
-    private RoomStore() {
-        getRoomsList();
-    }
-
-    public static RoomStore getInstance() {
-        return instance;
-    }
-
-    public ObservableList<Room> getRoomsList() {
+    public static ObservableList<Room> getAllRooms() {
+        ObservableList<Room> rooms = FXCollections.observableArrayList();
         String query = "SELECT * FROM rooms";
-        try (Connection connection = DatabaseManager.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(query)) {
 
-            rooms.clear();
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
             while (rs.next()) {
                 Room room = new Room(
                         rs.getInt("rNumber"),
@@ -31,67 +26,63 @@ public class RoomStore {
                 );
                 rooms.add(room);
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return rooms;
     }
 
-    public void insertRoom(Room room) {
-        if (room != null) {
-            String query = "INSERT INTO rooms (rNumber, floor, building) VALUES (?, ?, ?)";
-            try (Connection conn = DatabaseManager.getConnection();
-                 PreparedStatement statement = conn.prepareStatement(query)) {
+    public static void addRoom(Room room) {
+        String query = "INSERT INTO rooms (rNumber, floor, building) VALUES (?, ?, ?)";
 
-                statement.setInt(1, room.getrNumber());
-                statement.setInt(2, room.getFloor());
-                statement.setString(3, room.getBuilding());
-                statement.executeUpdate();
-                rooms.add(room);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, room.getrNumber());
+            stmt.setInt(2, room.getFloor());
+            stmt.setString(3, room.getBuilding());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
-    public void deleteRoom(Room room) {
-        if (room != null) {
-            String query = "DELETE FROM rooms WHERE rNumber = ? AND floor = ? AND building = ?";
-            try (Connection conn = DatabaseManager.getConnection();
-                 PreparedStatement statement = conn.prepareStatement(query)) {
+    public static void deleteRoom(Room room) {
+        String query = "DELETE FROM rooms WHERE rNumber = ? AND floor = ? AND building = ?";
 
-                statement.setInt(1, room.getrNumber());
-                statement.setInt(2, room.getFloor());
-                statement.setString(3, room.getBuilding());
-                statement.executeUpdate();
-                rooms.remove(room);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, room.getrNumber());
+            stmt.setInt(2, room.getFloor());
+            stmt.setString(3, room.getBuilding());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
-    public void updateRoom(Room room, int rNumber, int floor, String building) {
-        if (room != null) {
-            String query = "UPDATE rooms SET rNumber = ?, floor = ?, building = ? WHERE rNumber = ? AND floor = ? AND building = ?";
-            try (Connection conn = DatabaseManager.getConnection();
-                 PreparedStatement statement = conn.prepareStatement(query)) {
+    public static void updateRoom(Room room, int newNumber, int newFloor, String newBuilding) {
+        String query = "UPDATE rooms SET rNumber = ?, floor = ?, building = ? WHERE rNumber = ? AND floor = ? AND building = ?";
 
-                statement.setInt(1, rNumber);
-                statement.setInt(2, floor);
-                statement.setString(3, building);
-                statement.setInt(4, room.getrNumber());
-                statement.setInt(5, room.getFloor());
-                statement.setString(6, room.getBuilding());
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-                statement.executeUpdate();
+            stmt.setInt(1, newNumber);
+            stmt.setInt(2, newFloor);
+            stmt.setString(3, newBuilding);
+            stmt.setInt(4, room.getrNumber());
+            stmt.setInt(5, room.getFloor());
+            stmt.setString(6, room.getBuilding());
 
-                room.setrNumber(rNumber);
-                room.setFloor(floor);
-                room.setBuilding(building);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            stmt.executeUpdate();
+
+            room.setrNumber(newNumber);
+            room.setFloor(newFloor);
+            room.setBuilding(newBuilding);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

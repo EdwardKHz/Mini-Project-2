@@ -27,15 +27,13 @@ public class RoomController {
     @FXML private Button updtBtn;
     @FXML private Label errorRooms;
 
-    private final RoomStore roomStore = RoomStore.getInstance();
-
     @FXML
     public void initialize() {
         rNumberCol.setCellValueFactory(cellData -> cellData.getValue().rNumberProperty());
         floorCol.setCellValueFactory(cellData -> cellData.getValue().floorProperty());
         buildingCol.setCellValueFactory(cellData -> cellData.getValue().buildingProperty());
 
-        ObservableList<Room> rooms = roomStore.getRoomsList();
+        ObservableList<Room> rooms = RoomStore.getAllRooms();
         roomTbl.setItems(rooms);
         errorRooms.setVisible(false);
 
@@ -66,8 +64,9 @@ public class RoomController {
             }
 
             if (isValid) {
-                roomStore.insertRoom(new Room(rNumber, floor, building));
-                roomTbl.setItems(roomStore.getRoomsList());
+                Room newRoom = new Room(rNumber, floor, building);
+                RoomStore.addRoom(newRoom);
+                roomTbl.setItems(RoomStore.getAllRooms());
                 roomTbl.refresh();
                 clearFields();
                 errorRooms.setText("");
@@ -85,8 +84,8 @@ public class RoomController {
     public void deleteRoom(ActionEvent event) {
         Room selectedRoom = roomTbl.getSelectionModel().getSelectedItem();
         if (selectedRoom != null) {
-            roomStore.deleteRoom(selectedRoom);
-            roomTbl.setItems(roomStore.getRoomsList());
+            RoomStore.deleteRoom(selectedRoom);
+            roomTbl.setItems(RoomStore.getAllRooms());
             roomTbl.refresh();
             clearFields();
         }
@@ -111,7 +110,8 @@ public class RoomController {
                 }
 
                 if (isValid) {
-                    roomStore.updateRoom(selectedRoom, rNumber, floor, building);
+                    RoomStore.updateRoom(selectedRoom, rNumber, floor, building);
+                    roomTbl.setItems(RoomStore.getAllRooms());
                     roomTbl.refresh();
                     errorRooms.setText("");
                     errorRooms.setVisible(false);
