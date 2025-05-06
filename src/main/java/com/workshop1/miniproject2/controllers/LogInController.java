@@ -28,14 +28,13 @@ public class LogInController {
 
     @FXML
     void logInAction(ActionEvent event) throws IOException {
-        String username=user.getText();
-        String password=pass.getText();
+        String username = user.getText();
+        String password = pass.getText();
 
-        if(username.isEmpty()||password.isEmpty()){
+        if (username.isEmpty() || password.isEmpty()) {
             errorMsg.setText("Please enter all the fields");
             errorMsg.setVisible(true);
-        }
-        else if((username.equals("Joe")&&password.equals("Ghorayeb"))||(username.equals("Edward")&&password.equals("Khazzoum"))||(username.equals("Georges")&&password.equals("Samia"))||(username.equals("Joseph")&&password.equals("Yazbeck"))||(username.equals("Joseph")&&password.equals("Chidiac"))){
+        } else if (validateCredentials(username, password)) {
             errorMsg.setVisible(false);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/workshop1/miniproject2/views/home-view.fxml"));
             Parent homeRoot = loader.load();
@@ -46,19 +45,17 @@ public class LogInController {
             stage.setScene(homeScene);
             stage.setTitle("Home - Company Management System");
             stage.show();
-        }
-        else{
+        } else {
             errorMsg.setText("Incorrect username and/or password");
             errorMsg.setVisible(true);
-
-
         }
     }
+
 
     private boolean validateCredentials(String username, String password) {
         String dbURL = "jdbc:mysql://localhost:3306/workshopdb";
         String dbUsername = "root";
-        String dbPassword = "workshop2025";
+        String dbPassword = "edward1234";
 
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 
